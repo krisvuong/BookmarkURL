@@ -1,2 +1,2 @@
 ## BookmarkURL
-#### _A tool to quickly save links_
+A chrome extension to bookmark your future career opportunities
