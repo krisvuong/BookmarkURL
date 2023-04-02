@@ -1,2 +1,2 @@
 ## BookmarkURL
-_A chrome extension optimized to organize your future career opporutnities_
+A chrome extension optimized to organize your future career opporutnities!
