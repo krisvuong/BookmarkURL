@@ -10,13 +10,15 @@ inputBtn.addEventListener("click", saveInput)
 function saveInput() {
     myURLs.push(inputEl.value)
     inputEl.value=""
+    localStorage.setItem("myURLs", JSON.stringify(myURLs))
     renderSavedURLs()
 }
 
 
 function renderSavedURLs(){
-    let listItems = ""
-    for (let i = 0; i < myURLs.length; i++){
+    let listItems = "Your websites:"
+    let urlsFromLocalStorage = JSON.parse(localStorage.getItem("myURLs"))
+    for (let i = 0; i < urlsFromLocalStorage.length; i++){
         // a different method to edit the inner HTML of an element:
         // ulEl.innerHTML += "<li>" + myURLs[i] + "</li> "
 
@@ -28,10 +30,9 @@ function renderSavedURLs(){
 
         // write inputs in HTML formatting
         listItems += `
-                    Your websites: 
                     <li>
-                        <a href='${myURLs[i]}' target='_blank'>
-                            ${myURLs[i]}
+                        <a href='${urlsFromLocalStorage[i]}' target='_blank'>
+                            ${urlsFromLocalStorage[i]}
                         </a>
                     </li>`
     }
