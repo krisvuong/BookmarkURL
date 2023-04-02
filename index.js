@@ -1,20 +1,18 @@
 
-let myURLs = []
+let myURLs = []  // local array of saved URLs
 const inputBtn = document.getElementById("input-btn")
-const inputEl = document.getElementById("input-el")
 const deleteBtn = document.getElementById("delete-btn")
 const tabBtn = document.getElementById("tab-btn")
-const ulEl = document.getElementById("ul-el")
-
+const inputEl = document.getElementById("input-el")  // text field input
+const ulEl = document.getElementById("ul-el")  // unordered list of URLs
 
 /* 
  * get URLs from local storage
- * if any URLs, then update local myURLs and render
- * else, do nothing
+ * if any URLs, then update local myURLs and render them
  */
 const urlsFromLocalStorage = JSON.parse(localStorage.getItem("myURLs"))
-if (urlsFromLocalStorage){
-    myURLs = urlsFromLocalStorage
+if (urlsFromLocalStorage){  // if not empty
+    myURLs = urlsFromLocalStorage  // assign to local array
     render(myURLs)
 }
 
@@ -23,36 +21,33 @@ inputBtn.addEventListener("click", saveInput)
 deleteBtn.addEventListener("dblclick", deleteAll)
 tabBtn.addEventListener("click", saveTab)
 
-// called in event listener for save input button
+// save input button
 function saveInput() {
-    myURLs.push(inputEl.value)
-    inputEl.value=""
-    localStorage.setItem("myURLs", JSON.stringify(myURLs))
+    myURLs.push(inputEl.value)  // save text field value to myURLs array
+    inputEl.value=""  // clear text field
+    localStorage.setItem("myURLs", JSON.stringify(myURLs))  // update local storage 
     render(myURLs)
 }
 
-// called in event listener for delete all button
+// delete all button
 function deleteAll() {
     localStorage.clear()
     myURLs = []
     render(myURLs)
 }
 
-// called in event listener for save tab button
+// save tab button
 function saveTab() {
-    // get URL of current tab using Chrome API
-    // get active tab and current window
+    // get URL of active tab (on current window) using Chrome API
     chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
         // when the query on the tab succeeds, the API returns a "tabs" value and executes function(tabs)
         myURLs.push(tabs[0].url)
-        localStorage.setItem("myURLs", JSON.stringify(myURLs))
+        localStorage.setItem("myURLs", JSON.stringify(myURLs))  // update local storage
         render(myURLs)
     })
-
-
 }
 
-// draw URLs on screen as an unordered list HTML element
+// render URLs on screen as an unordered list HTML element
 function render(urls){
     let listItems = "Your websites:"
     for (let i = 0; i < urls.length; i++){
@@ -63,6 +58,6 @@ function render(urls){
                         </a>
                     </li>`
     }
-    // OUTSIDE the loop, edit the DOM (editing DOM is expensive)
+    // OUTSIDE the loop, edit DOM (expensive)
     ulEl.innerHTML = listItems
 }

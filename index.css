@@ -3,16 +3,13 @@ body {
     padding: 10px;
     font-family: Arial, Helvetica, sans-serif;
     min-width: 400px;
-
 }
-
 
 input {
     padding: 10px 15px;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #5f9341
-
 }
 
 button {
@@ -48,7 +45,7 @@ li {
     margin-top:5px;
 }
 
-/* only target anchors (links) inside list items (li */
+/* only target anchors (links) also inside list items (li) */
 li a {
     color:#7aac5d
 }
