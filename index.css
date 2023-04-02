@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+input {
+    padding: 10px 15px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #5f9341
+
+}
+
+button {
+    margin-top: 5px;
+    padding: 10px 20px;
+    background-color: #5f9341;
+    color: white;
+    border: none;
+    font-weight: bold;
+    transition-duration: 0.2s;
+}
+
+button:hover{
+    background-color:#7aac5d
+}
+
+button:active{
+    transform: translateY(2px);
+}
+
+ul {
+    margin-top:20px;
+    list-style:none;
+    padding-left:0;
+}
+
+li {
+    margin-top:5px;
+}
+
+/* only target anchors (links) inside list items (li */
+li a {
+    color:#7aac5d
+}
