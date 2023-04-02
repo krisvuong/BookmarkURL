@@ -20,9 +20,14 @@ button {
     padding: 10px 20px;
     background-color: #5f9341;
     color: white;
-    border: none;
+    border: 1px solid #5f9341;
     font-weight: bold;
     transition-duration: 0.2s;
+}
+
+#delete-btn{
+    background-color: white;
+    color: #5f9341;
 }
 
 button:hover{

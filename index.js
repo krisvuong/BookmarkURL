@@ -1,38 +1,48 @@
-// let myURLs = ["www.google.com", "www.amazon.com", "www.gmail.com"]
+
 let myURLs = []
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
+const deleteBtn = document.getElementById("delete-btn")
 const ulEl = document.getElementById("ul-el")
 
+/* 
+ * get URLs from local storage
+ * if any URLs, then update local myURLs and render
+ * else, do nothing
+ */
+const urlsFromLocalStorage = JSON.parse(localStorage.getItem("myURLs"))
+if (urlsFromLocalStorage){
+    myURLs = urlsFromLocalStorage
+    renderSavedURLs(myURLs)
+}
+
+// event listeners for buttons
 inputBtn.addEventListener("click", saveInput)
+deleteBtn.addEventListener("dblclick", deleteAll)
 
 // called in event listener for save input button
 function saveInput() {
     myURLs.push(inputEl.value)
     inputEl.value=""
     localStorage.setItem("myURLs", JSON.stringify(myURLs))
-    renderSavedURLs()
+    renderSavedURLs(myURLs)
 }
 
+// called in event listener for delete all button
+function deleteAll() {
+    localStorage.clear()
+    myURLs = []
+    renderSavedURLs(myURLs)
+}
 
-function renderSavedURLs(){
+// draw URLs on screen as an unordered list HTML element
+function renderSavedURLs(urls){
     let listItems = "Your websites:"
-    let urlsFromLocalStorage = JSON.parse(localStorage.getItem("myURLs"))
-    for (let i = 0; i < urlsFromLocalStorage.length; i++){
-        // a different method to edit the inner HTML of an element:
-        // ulEl.innerHTML += "<li>" + myURLs[i] + "</li> "
-
-        /* another way to do it
-        const li = document.createElement("li")  // create an HTML element 
-        li.textContent = myURLs[i] // add text content
-        ulEl.append(li)  // append HTML <li> element to main <ul> element
-        */
-
-        // write inputs in HTML formatting
+    for (let i = 0; i < urls.length; i++){
         listItems += `
                     <li>
-                        <a href='${urlsFromLocalStorage[i]}' target='_blank'>
-                            ${urlsFromLocalStorage[i]}
+                        <a href='${urls[i]}' target='_blank'>
+                            ${urls[i]}
                         </a>
                     </li>`
     }
